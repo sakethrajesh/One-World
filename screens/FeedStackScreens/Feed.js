@@ -1,12 +1,30 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+import { useAuthentication } from '../../utils/hooks/useAuthentication'
+import { Button } from 'react-native-elements';
+import { signOut, getAuth } from 'firebase/auth';
 
-const Feed = () => {
+export default function Feed() {
+  const { user } = useAuthentication();
+  const auth = getAuth();
+
   return (
-    <View>
-      <Text>Feed</Text>
+    <View style={styles.container}>
+      <Text>Welcome {user?.email}!</Text>
+
+      <Button title="Sign Out" style={styles.button} onPress={() => signOut(auth)} />
     </View>
-  )
+  );
 }
 
-export default Feed
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  button: {
+    marginTop: 10
+  }
+});

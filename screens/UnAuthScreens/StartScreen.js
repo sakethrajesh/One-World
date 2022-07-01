@@ -1,20 +1,36 @@
-import { View, Text } from 'react-native'
-import React from 'react'
-import { Button, TextInput } from 'react-native-paper'
+import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+import { Button } from 'react-native-elements';
 
-const StartScreen = () => {
-
-  const SignIn = () => {
-  
-  }
-
+const StartScreen = ({ navigation }) => {
   return (
-    <View>
-      <Text>Sign In</Text>
-      <TextInput/>
-      <Button icon="camera" mode="contained" onPress={() => SignIn()}>Login in</Button>
+    <View style={styles.container}>
+      <Text>Hey There! 👋🏽</Text>
+
+      <View style={styles.buttons}>
+        <Button title="Sign in" buttonStyle={styles.button} onPress={() => navigation.navigate('Sign In')} />
+        <Button title="Sign up" type="outline" buttonStyle={styles.button} onPress={() => navigation.navigate('Sign Up')} />
+      </View>
     </View>
-  )
+  );
 }
 
-export default StartScreen
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingTop: 20,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+  buttons: {
+    flex: 1,
+  },
+
+  button: {
+    marginTop: 10
+  }
+});
+
+export default StartScreen;
